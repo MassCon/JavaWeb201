@@ -1,0 +1,9 @@
+{
+  "DataProviders": {
+    "PlanetScale": {
+      "url": "",
+      "user": "",
+      "password": ""
+    }
+  }
+}

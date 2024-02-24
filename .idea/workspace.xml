@@ -9,16 +9,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="929a80fd-ad8e-473e-96dd-a25ceb174443" name="Changes" comment="10.10.2023 forms clw+hw">
-      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/services/formparse/FormParseResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/services/formparse/FormParseService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/services/formparse/MixedFormParseService.java" afterDir="false" />
+    <list default="true" id="929a80fd-ad8e-473e-96dd-a25ceb174443" name="Changes" comment="13 + 11.10.2023 img forms clw+hw">
+      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/dto/entities/CallMe.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/services/db/DbProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/services/db/PlanetDbProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/servlets/DbServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/db_config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/db.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/dto/models/RegFormModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/dto/models/RegFormModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/ioc/RouterModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/ioc/RouterModule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/ioc/ServicesModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/ioc/ServicesModule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/servlets/SignupServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/servlets/SignupServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/signup.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/signup.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/services/formparse/FormParseResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/services/formparse/FormParseResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/services/formparse/MixedFormParseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/services/formparse/MixedFormParseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/_layout.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/_layout.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/site.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/site.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,15 +35,30 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jsp File" />
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="Jsp File" />
+        <option value="package.json" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "MassCon"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="a7132b80-6b5a-4648-8391-c16b10997364" />
+        <option name="url" value="https://github.com/MassCon/JavaWeb201.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -176,7 +198,7 @@
       <updated>1706912810364</updated>
       <workItem from="1706912811402" duration="3112000" />
       <workItem from="1707256084905" duration="5334000" />
-      <workItem from="1708791496103" duration="14825000" />
+      <workItem from="1708791496103" duration="17889000" />
     </task>
     <task id="LOCAL-00001" summary="06.11.2023">
       <option name="closed" value="true" />
@@ -210,7 +232,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708808003039</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="13 + 11.10.2023 img forms clw+hw">
+      <option name="closed" value="true" />
+      <created>1708812267281</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1708812267282</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,6 +250,7 @@
     <MESSAGE value="06.11.2023" />
     <MESSAGE value="09.10.2023 Ioc Filters hw+clw" />
     <MESSAGE value="10.10.2023 forms clw+hw" />
-    <option name="LAST_COMMIT_MESSAGE" value="10.10.2023 forms clw+hw" />
+    <MESSAGE value="13 + 11.10.2023 img forms clw+hw" />
+    <option name="LAST_COMMIT_MESSAGE" value="13 + 11.10.2023 img forms clw+hw" />
   </component>
 </project>

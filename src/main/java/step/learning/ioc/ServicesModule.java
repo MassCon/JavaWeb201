@@ -10,6 +10,8 @@ import step.learning.services.random.RandomService;
 import step.learning.services.random.RandomSrviceV1;
 import step.learning.services.formparse.FormParseService;
 import step.learning.services.formparse.MixedFormParseService;
+import step.learning.services.db.DbProvider;
+import step.learning.services.db.PlanetDbProvider;
 
 public class ServicesModule extends AbstractModule {
     @Override
@@ -23,6 +25,10 @@ public class ServicesModule extends AbstractModule {
                 .to(ShaHashService.class);
 
         bind( FormParseService.class ).to( MixedFormParseService.class );
+
+        bind(DbProvider.class).to(PlanetDbProvider.class);
+
+        bind(String.class).annotatedWith(Names.named("db-prefix")).toInstance("java201_");
 
     }
     private RandomService randomService;
