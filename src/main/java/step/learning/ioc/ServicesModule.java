@@ -8,6 +8,8 @@ import step.learning.services.hash.Md5HashService;
 import step.learning.services.hash.ShaHashService;
 import step.learning.services.random.RandomService;
 import step.learning.services.random.RandomSrviceV1;
+import step.learning.services.formparse.FormParseService;
+import step.learning.services.formparse.MixedFormParseService;
 
 public class ServicesModule extends AbstractModule {
     @Override
@@ -19,6 +21,9 @@ public class ServicesModule extends AbstractModule {
         bind(HashService.class)
                 .annotatedWith(Names.named("DSA-Hash"))
                 .to(ShaHashService.class);
+
+        bind( FormParseService.class ).to( MixedFormParseService.class );
+
     }
     private RandomService randomService;
     @Provides
