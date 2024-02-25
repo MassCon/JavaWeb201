@@ -9,22 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="929a80fd-ad8e-473e-96dd-a25ceb174443" name="Changes" comment="13 + 11.10.2023 img forms clw+hw">
-      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/dto/entities/CallMe.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/services/db/DbProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/services/db/PlanetDbProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/servlets/DbServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db_config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/db.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="929a80fd-ad8e-473e-96dd-a25ceb174443" name="Changes" comment="17.10.2023 DB hw+clw">
+      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/dao/CallMeDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/ioc/LoggerModule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/dto/models/RegFormModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/dto/models/RegFormModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/ioc/RouterModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/ioc/RouterModule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/ioc/ServicesModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/ioc/ServicesModule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/services/formparse/FormParseResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/services/formparse/FormParseResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/services/formparse/MixedFormParseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/services/formparse/MixedFormParseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/_layout.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/_layout.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/dto/entities/CallMe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/dto/entities/CallMe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/ioc/IocContextListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/ioc/IocContextListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/servlets/DbServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/servlets/DbServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/db.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/db.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/js/site.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/site.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -198,7 +190,7 @@
       <updated>1706912810364</updated>
       <workItem from="1706912811402" duration="3112000" />
       <workItem from="1707256084905" duration="5334000" />
-      <workItem from="1708791496103" duration="17889000" />
+      <workItem from="1708791496103" duration="25300000" />
     </task>
     <task id="LOCAL-00001" summary="06.11.2023">
       <option name="closed" value="true" />
@@ -240,7 +232,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708812267282</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="17.10.2023 DB hw+clw">
+      <option name="closed" value="true" />
+      <created>1708816790310</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1708816790310</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,6 +251,7 @@
     <MESSAGE value="09.10.2023 Ioc Filters hw+clw" />
     <MESSAGE value="10.10.2023 forms clw+hw" />
     <MESSAGE value="13 + 11.10.2023 img forms clw+hw" />
-    <option name="LAST_COMMIT_MESSAGE" value="13 + 11.10.2023 img forms clw+hw" />
+    <MESSAGE value="17.10.2023 DB hw+clw" />
+    <option name="LAST_COMMIT_MESSAGE" value="17.10.2023 DB hw+clw" />
   </component>
 </project>

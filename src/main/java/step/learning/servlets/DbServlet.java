@@ -4,7 +4,6 @@ import com.google.gson.*;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
-import org.checkerframework.checker.units.qual.C;
 import step.learning.dto.entities.CallMe;
 import step.learning.services.db.DbProvider;
 
@@ -12,7 +11,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.*;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,17 +22,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import step.learning.dao.CallMeDao;
 
 @Singleton
 public class DbServlet extends HttpServlet {
     private final DbProvider dbProvider;
     private final String dbPrefix;
+    private final CallMeDao callMeDao;
     @Inject
-    public DbServlet(DbProvider dbProvider, @Named("db-prefix") String dbPrefix) {
+    public DbServlet(DbProvider dbProvider, @Named("db-prefix") String dbPrefix, CallMeDao callMeDao) {
         this.dbProvider = dbProvider;
         this.dbPrefix = dbPrefix;
+        this.callMeDao = callMeDao;
     }
 
     @Override
@@ -44,19 +44,52 @@ public class DbServlet extends HttpServlet {
         switch (req.getMethod().toUpperCase()) {
             case "PATCH": doPatch(req, resp); break;
             case "COPY": doCopy(req, resp); break;
-            // case "PURGE": break;
-            // case "LINK": break;
+            case "LINK": doLink(req, resp); break;
+
+            case "PURGE": doPurge(req, resp); break;
+            case "MOVE": doMove(req, resp); break;
             // case "UNLINK": break;
-            // case "MOVE": break;
             default: super.service(req, resp);
         }
 
     }
 
+    protected void doLink(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("application/json");
+        String callId = req.getParameter("call-id");
+        if( callId == null)
+        {
+            resp.setStatus(400);
+            resp.getWriter().print("\"Missing required parameter 'call-id' \"");
+            return;
+        }
+        CallMe item = callMeDao.getById(callId);
+        if(item == null)
+        {
+            resp.setStatus(404);
+            resp.getWriter().print("\"Item not found for given parameter 'call-id' \"");
+            return;
+        }
+        if(item.getCallMoment() != null){
+            resp.setStatus(422);
+            resp.getWriter().print("\"Unprocessable Content: Item was processed early \"");
+            return;
+        }
+        if(callMeDao.updateCallMoment(item)){
+            resp.setStatus(202);
+            resp.getWriter().print(new Gson().toJson(item));
+        }
+        else
+        {
+            resp.setStatus(500);
+            resp.getWriter().print("\"Server error. Details on server's logs \"");
+            return;
+        }
+    }
+
     protected void doCopy(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<CallMe> calls = new ArrayList<>() ;
-        calls.add(new CallMe(100500, "Петрович", "+380987654321", new Date()));
-        calls.add(new CallMe(100501, "Петрович2", "+380987654322", new Date()));
+        List<CallMe> calls =  callMeDao.getAll() ;
+
         Gson gson = new GsonBuilder().create();
         resp.setContentType("application/json");
         String jsonData = gson.toJson(calls);
@@ -64,7 +97,72 @@ public class DbServlet extends HttpServlet {
     }
 
     protected void doPatch(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.getWriter().print("Patch works");
+        resp.setContentType("application/json");
+        String callId = req.getParameter("call-id");
+        if(callId == null) {
+            resp.setStatus(400);
+            resp.getWriter().print("\"Missing required parameter 'call-id'\"");
+            return;
+        }
+        CallMe item = callMeDao.getById(callId);
+        if(item == null ){
+            resp.setStatus(404);
+            resp.getWriter().print("\"Item not found for given parameter 'call-id'\"");
+            return;
+        }
+        if(item.getCallMoment() != null) {
+            resp.setStatus(422);
+            resp.getWriter().print("\"Unprocessable Content: Item was processed early\"");
+            return;
+        }
+        if(callMeDao.updateCallMoment(item)){
+            resp.setStatus(202);
+            resp.getWriter().print(new Gson().toJson(item));
+            return;
+        }
+        else
+        {
+            resp.setStatus(500);
+            resp.getWriter().print("\"Server error. Details on server's logs \"");
+            return;
+        }
+    }
+    protected void doPurge(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<CallMe> calls = callMeDao.getAll(true);
+        Gson gson = new GsonBuilder().create();
+        resp.getWriter().print(gson.toJson(calls));
+    }
+    protected void doMove(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        resp.setContentType("application/json");
+        String callId = req.getParameter("call-id");
+        if( callId == null)
+        {
+            resp.setStatus(400);
+            resp.getWriter().print("\"Missing required parameter 'call-id' \"");
+            return;
+        }
+        CallMe item = callMeDao.getById(callId,true);
+        if(item == null)
+        {
+            resp.setStatus(404);
+            resp.getWriter().print("\"Item not found for given parameter 'call-id' \"");
+            return;
+        }
+        if(item.getDeleteMoment() == null){
+            resp.setStatus(422);
+            resp.getWriter().print("\"Unprocessable Content: Item was processed early \"");
+            return;
+        }
+        if(callMeDao.restore(item)){
+            resp.setStatus(202);
+            resp.getWriter().print("\"Operation completed\"");
+        }
+        else
+        {
+            resp.setStatus(500);
+            resp.getWriter().print("\"Server error. Details on server's logs \"");
+            return;
+        }
     }
 
     @Override
@@ -89,11 +187,12 @@ public class DbServlet extends HttpServlet {
         String status;
         String message;
         String sql = "CREATE TABLE " + dbPrefix + "call_me (" +
-                "id     BIGINT UNSIGNED PRIMARY KEY DEFAULT (UUID_SHORT())," +
-                "name   VARCHAR(64)     NULL," +
-                "phone  CHAR(13)        NOT NULL COMMENT '+38 098 765 43 21'," +
-                "moment DATETIME        DEFAULT CURRENT_TIMESTAMP" +
-                ") ENGINE = InnoDB DEFAULT CHARSET = UTF8;";
+                "`id`     BIGINT UNSIGNED PRIMARY KEY DEFAULT (UUID_SHORT())," +
+                "`name`   VARCHAR(64)     NULL," +
+                "`phone`  CHAR(13)        NOT NULL COMMENT '+38 098 765 43 21'," +
+                "`moment` DATETIME        DEFAULT CURRENT_TIMESTAMP," +
+                "`call_moment` DATETIME NULL," +
+                "`delete_moment` DATETIME NULL " +") ENGINE = InnoDB DEFAULT CHARSET = UTF8;";
         try (Statement statement = dbProvider.getConnection().createStatement()) {
             statement.executeUpdate(sql);
             status = "OK";
@@ -227,5 +326,39 @@ public class DbServlet extends HttpServlet {
 
         resp.getWriter().print(result.toString());
 
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("application/json");
+        String callId = req.getParameter("call-id");
+        if(callId == null) {
+            resp.setStatus(400);
+            resp.getWriter().print("\"Missing required parameter 'call-id'\"");
+            return;
+        }
+        CallMe item = callMeDao.getById(callId);
+        if(item == null ){
+            resp.setStatus(404);
+            resp.getWriter().print("\"Item not found for given parameter 'call-id'\"");
+            return;
+        }
+        if(item.getDeleteMoment() != null) {
+            resp.setStatus(422);
+            resp.getWriter().print("\"Unprocessable Content: Item was processed early\"");
+            return;
+        }
+
+        if(callMeDao.delete(item)){
+            resp.setStatus(202);
+            resp.getWriter().print("\"Operation completed\"");
+            return;
+        }
+        else
+        {
+            resp.setStatus(500);
+            resp.getWriter().print("\"Server error. Details on server's logs \"");
+            return;
+        }
     }
 }
