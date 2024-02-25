@@ -12,6 +12,10 @@ import step.learning.services.formparse.FormParseService;
 import step.learning.services.formparse.MixedFormParseService;
 import step.learning.services.db.DbProvider;
 import step.learning.services.db.PlanetDbProvider;
+import step.learning.services.kdf.DigestHashKdfService;
+import step.learning.services.kdf.KdfService;
+
+import java.util.Date;
 
 public class ServicesModule extends AbstractModule {
     @Override
@@ -28,6 +32,9 @@ public class ServicesModule extends AbstractModule {
 
         bind(DbProvider.class).to(PlanetDbProvider.class);
 
+        bind(KdfService.class).to(DigestHashKdfService.class);
+
+
         bind(String.class).annotatedWith(Names.named("db-prefix")).toInstance("java201_");
 
     }
@@ -36,7 +43,7 @@ public class ServicesModule extends AbstractModule {
     private RandomService injectRandomService() {
         if(randomService == null ) {
             randomService = new RandomSrviceV1();
-            randomService.seed("0");
+            randomService.seed(String.valueOf(new Date().getTime()));
         }
         return randomService;
     }

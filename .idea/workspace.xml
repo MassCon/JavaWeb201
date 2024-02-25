@@ -9,22 +9,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="929a80fd-ad8e-473e-96dd-a25ceb174443" name="Changes" comment="DAO + CRUD hw+clw">
-      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/dao/AuthTokenDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/dao/UserDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/dto/entities/AuthToken.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/dto/entities/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/servlets/AuthServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/servlets/SpaServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spa.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/spa.js" afterDir="false" />
+    <list default="true" id="929a80fd-ad8e-473e-96dd-a25ceb174443" name="Changes" comment="23.10.2023 Auth hw+clw">
+      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/services/kdf/DigestHashKdfService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/services/kdf/KdfService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/ioc/RouterModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/ioc/RouterModule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/services/formparse/FormParseResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/services/formparse/FormParseResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/services/formparse/FormParseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/services/formparse/FormParseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/servlets/SignupServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/servlets/SignupServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/_layout.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/_layout.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/site.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/site.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/dao/AuthTokenDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/dao/AuthTokenDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/dto/entities/AuthToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/dto/entities/AuthToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/dto/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/dto/entities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/dto/models/RegFormModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/dto/models/RegFormModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/ioc/ServicesModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/ioc/ServicesModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/services/random/RandomSrviceV1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/services/random/RandomSrviceV1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/servlets/AuthServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/servlets/AuthServlet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,9 +32,9 @@
       <list>
         <option value="CSS File" />
         <option value="package.json" />
-        <option value="Class" />
         <option value="Jsp File" />
         <option value="JavaScript File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -197,7 +193,7 @@
       <updated>1706912810364</updated>
       <workItem from="1706912811402" duration="3112000" />
       <workItem from="1707256084905" duration="5334000" />
-      <workItem from="1708791496103" duration="30290000" />
+      <workItem from="1708791496103" duration="31318000" />
     </task>
     <task id="LOCAL-00001" summary="06.11.2023">
       <option name="closed" value="true" />
@@ -255,7 +251,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708873221242</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="23.10.2023 Auth hw+clw">
+      <option name="closed" value="true" />
+      <created>1708903009055</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1708903009055</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -268,6 +272,7 @@
     <MESSAGE value="13 + 11.10.2023 img forms clw+hw" />
     <MESSAGE value="17.10.2023 DB hw+clw" />
     <MESSAGE value="DAO + CRUD hw+clw" />
-    <option name="LAST_COMMIT_MESSAGE" value="DAO + CRUD hw+clw" />
+    <MESSAGE value="23.10.2023 Auth hw+clw" />
+    <option name="LAST_COMMIT_MESSAGE" value="23.10.2023 Auth hw+clw" />
   </component>
 </project>
