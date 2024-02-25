@@ -13,16 +13,21 @@ import java.io.IOException;
 import java.text.ParseException;
 import step.learning.services.formparse.FormParseResult;
 import step.learning.services.formparse.FormParseService;
+import step.learning.dao.UserDao;
+
 
 
 @Singleton
 public class SignupServlet extends HttpServlet {
 
     private final FormParseService formParseService;
+    private final UserDao userDao;
+
 
     @Inject
-    public SignupServlet(FormParseService formParseService) {
+    public SignupServlet(FormParseService formParseService, UserDao userDao) {
         this.formParseService = formParseService;
+        this.userDao = userDao;
     }
 
 
@@ -83,6 +88,7 @@ public class SignupServlet extends HttpServlet {
         }
         else {
             // стан успішної обробки моделі - передаємо лише повідомлення
+            userDao.addFromForm(model);
             session.setAttribute("reg-status", 2);
 
         }
