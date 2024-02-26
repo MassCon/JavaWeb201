@@ -1,46 +1,16 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
+<h1>Greetings!</h1>
+<p>
 
-<%@ page contentType="text/html;charset=UTF-8"  %>
+    Welcome to NexDrive Motors
+    – Your Ultimate Destination for Automotive Dreams!
 
-<html>
-<head>
-    <title>JSP</title>
-</head>
-<body>
-<h1>Java web. Вступ</h1>
-<p>
-    Новий проєкт - архетип webapp.
-    Для запуску проєкта потрібен веб-сервер
-    Варіанти:
-    Tomcat (8), Glassfigh (4-5), WildFly (22) та ін.
-    Ключовий момент - обираємо версію з підтримкою javax.
-    Будь-який з них завантажується архівом та просто розпаковується.
+    At NexDrive Motors , we bring the car buying experience to the digital realm, where dreams of driving your dream car come to life. Explore our virtual showroom, carefully curated to showcase a diverse range of imaginary cars designed to ignite your passion for the road.
+
 </p>
-<% // Razor - @{ }
-    String str = "Hello";
-    str += " world";
-    int x = 10;
-%>
 <p>
-    str = <%= str %>, x + 5 = <%= x + 5 %>
+    Indulge your automotive fantasies at NexDrive Motors – where the only limits are the boundaries of your imagination. Start exploring and let the thrill of virtual driving take you to places yet to be discovered!
 </p>
-<ul>
-    <% for (int i = 0 ; i < 5; i++) { %>
-    <li>
-        Item No <%= i + 1%>
-    </li>
-    <% } %>
-</ul>
-<jsp:include page="fragment.jsp" />
-<h2>Сервлети</h2>
 <p>
-    Сервлети - це класи Java, призначені для роботи з мережними задачами.
-    Для роботи з ними треба встановити Servlet API (за допомогою Maven).
-    Після створення класу сервлету його треба включити в маршрутизацію
+    Lets Roll!
 </p>
-<ul>
-    <li>За допомогою web.xml</li>
-    <li>За допомогою анотацій</li>
-    <li>За допомогою IoC</li>
-</ul>
-</body>
-</html>

@@ -1,17 +1,17 @@
 package step.learning.dto.entities;
 
-import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class AuthToken {
     private String jti  ;   // id
     private String sub  ;   // user-id
     private Date exp    ;   // expires
     private Date iat    ;   // issued at
-    private String nik; // getter only ~ navigation
 
+    private String nik; // getter only ~ navigation
 
     public AuthToken( ) { }
     public AuthToken(ResultSet resultSet) throws SQLException {
@@ -24,6 +24,7 @@ public class AuthToken {
 
         moment = resultSet.getTimestamp("iat");
         this.setIat( moment == null ? null : new Date( moment.getTime() ) );
+
         try { this.nik = resultSet.getString("nik") ; }
         catch (Exception ignored) { };
     }

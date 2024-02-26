@@ -1,23 +1,19 @@
 package step.learning.dao;
 
+import com.google.gson.JsonParser;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
-import step.learning.services.db.DbProvider;
-
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import step.learning.dto.entities.AuthToken;
 import step.learning.dto.entities.User;
+import step.learning.services.db.DbProvider;
+
 import java.sql.*;
+import java.util.Base64;
 import java.util.Date;
 import java.util.UUID;
-
-import com.google.gson.JsonParser;
-import java.util.Base64;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Singleton
 public class AuthTokenDao {
@@ -31,14 +27,12 @@ public class AuthTokenDao {
         this.dbPrefix = dbPrefix;
         this.logger = logger;
         this.userDao = userDao;
-
     }
-
     public AuthToken getTokenByBearer(String bearer) {
         String jti;
         try {
             jti = JsonParser.parseString(
-                    new String(Base64.getUrlDecoder().decode(bearer.getBytes()))
+                new String(Base64.getUrlDecoder().decode(bearer.getBytes()))
             ).getAsJsonObject().get("jti").getAsString();
         }
         catch (Exception ex) {
@@ -60,7 +54,6 @@ public class AuthTokenDao {
         }
         return null;
     }
-
     public AuthToken getTokenByCredentials(String login, String password) {
         User user = userDao.getUserByCredentials(login, password);
         if(user == null ) {
@@ -125,9 +118,8 @@ public class AuthTokenDao {
         }
         return null;
     }
-
     public boolean install() {
-        String sql = "CREATE TABLE " + dbPrefix + "auth_tokens (" +
+        String sql = "CREATE TABLE IF NOT EXISTS " + dbPrefix + "auth_tokens (" +
                 "jti BINARY(16) PRIMARY KEY DEFAULT ( UUID_TO_BIN( UUID() ) )," +
                 "sub BIGINT UNSIGNED NOT NULL COMMENT 'user-id'," +
                 "exp DATETIME NOT NULL," +
@@ -139,7 +131,6 @@ public class AuthTokenDao {
         }
         catch (SQLException ex){
             logger.log(Level.WARNING,ex.getMessage() + "----" + sql);
-
         }
         return false;
     }

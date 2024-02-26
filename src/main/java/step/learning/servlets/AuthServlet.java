@@ -6,22 +6,21 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import step.learning.dao.AuthTokenDao;
 import step.learning.dao.UserDao;
+import step.learning.dto.entities.AuthToken;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
-import step.learning.dto.entities.AuthToken;
 import java.util.Base64;
 
 @Singleton
 public class AuthServlet extends HttpServlet {
     private final Gson gson = new GsonBuilder().serializeNulls().create();
     private final AuthTokenDao authTokenDao;
-    private final UserDao userDao
-            ;
+    private final UserDao userDao;
 
     @Inject
     public AuthServlet(AuthTokenDao authTokenDao, UserDao userDao) {
@@ -30,31 +29,27 @@ public class AuthServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if(userDao.install()) {
-            sendResponse(resp, 201, "Created");
-        }
-        else {
-            sendResponse(resp, 500, "Error, see server logs");
-        }
-    }
-
-    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
-        if(login == null || login.isEmpty()
-                || password == null /* || password.isEmpty() */ ) {
+
+        if(login == null || login.isEmpty() || password == null ) {
             sendResponse(resp, 400, "Missing required parametrs: login and/or password");
             return;
         }
+
         AuthToken authToken = authTokenDao.getTokenByCredentials(login, password);
         if( authToken == null ) {
             sendResponse(resp, 401, "Auth rejected for given login and/or password");
             return;
         }
+
+
         String json = gson.toJson(authToken);
         String base64code = Base64.getUrlEncoder().encodeToString(json.getBytes());
+        Cookie cookie = new Cookie("authToken", base64code);
+        cookie.setMaxAge(3600); // Set the cookie expiration time in seconds
+        resp.addCookie(cookie);
         resp.setContentType("text/plain");
         resp.getWriter().print(base64code);
     }
@@ -65,14 +60,3 @@ public class AuthServlet extends HttpServlet {
         resp.getWriter().print( body );
     }
 }
-/*
-Авторизація та автентифікація
-Автентифікація - перевірка логіну/паролю
-Авторизація - перевірка прав доступу
-Схеми:
-За сесіями - сервер зберігає ознаку авторизації механізмом сесій, перевіряє її вилученням даного параметру.
-За токенами - без сесій, клієнт з кожним запитом передає токен, який він отримує при авторизації.
-Робота з токенами.
-Токен (дослівно - жетон, посвідчення) - певні дані, що ідентифікують користувача. Існують пропозиції стандартизації токенів,
-зокрема, JWT. Для формування та перевірки токенів у БД як правило створюється окрема таблиця.
- */

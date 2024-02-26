@@ -4,15 +4,15 @@ import org.apache.commons.fileupload.FileItem;
 import step.learning.services.formparse.FormParseResult;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-
-import java.util.regex.Pattern;
 import java.util.*;
-import java.io.File;
+import java.util.regex.Pattern;
 
 public class RegFormModel {
+
     // region fields
     private String name;
     private String login;
@@ -23,82 +23,6 @@ public class RegFormModel {
     private boolean isAgree;
     private String avatar; // filename for avatar
     // endregion
-
-
-
-    /*public RegFormModel( HttpServletRequest request ) throws ParseException {
-        this.setName(request.getParameter("reg-name"));
-        this.setLogin(request.getParameter("reg-login"));
-        this.setPassword(request.getParameter("reg-password"));
-        this.setRepeat(request.getParameter("reg-repeat"));
-        this.setEmail(request.getParameter("reg-email"));
-        this.setIsAgree(request.getParameter("reg-rules"));
-        this.setBirthdate(request.getParameter("reg-birthdate"));
-    }*/
-
-
-
-    public RegFormModel(FormParseResult result) throws ParseException {
-            Map<String,String> fields = result.getFields();
-            this.setName(fields.get("reg-name"));
-            this.setLogin(fields.get("reg-login"));
-            this.setPassword(fields.get("reg-password"));
-            this.setRepeat(fields.get("reg-repeat"));
-            this.setEmail(fields.get("reg-email"));
-            this.setIsAgree(fields.get("reg-rules"));
-            this.setBirthdate(fields.get("reg-birthdate"));
-            this.setAvatar(result);
-    }
-
-    public Map<String, String > getErrorMessages() {
-        Map<String, String> result = new HashMap<>() ;
-
-        if(login == null || "".equals(login)) {
-            result.put("login", "Логін не може бути порожнім");
-        } else if (! Pattern.matches("^[a-zA-Z0-9]+$", login)) {
-            result.put("login", "Логін не відповідає шаблону");
-        }
-
-        if(name == null || "".equals(name)) {
-            result.put("name", "Ім'я не може бути порожнім");
-        }
-
-        Pattern pattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
-
-        if(!pattern.matcher(email).matches()) {
-            result.put("email", "Некоректна адреса електронної пошти");
-        }
-
-        Date current = new Date();
-
-        if(birthdate == null) {
-            result.put("birthdate", "Треба ввести дату народження");
-        }
-        else if(birthdate.compareTo( current ) > 0 ) {
-            result.put("birthdate", "Вітаємо, мандрівнику у часі! Як там третя світова?");
-        }
-
-        if(password == null || "".equals(password)) {
-            result.put("password", "Пароль не може бути порожнім");
-        }
-        else if(password.length() < 3) {
-            result.put("password", "Пароль повинен бути більше трьох символів");
-        }
-
-        if(repeat == null || "".equals(repeat)) {
-            result.put("repeat", "Необхідно повторити пароль");
-        }
-        else if(!password.equals(repeat)) {
-            result.put("repeat", "Паролі не співпадають");
-        }
-
-        if(!isAgree) {
-            result.put("rules", "Треба погодитись шоб нічо не порушувати");
-        }
-
-        return result;
-    }
-
 
     // region accessors
     private void setAvatar(FormParseResult result) throws ParseException {
@@ -218,6 +142,66 @@ public class RegFormModel {
         isAgree = agree;
     }
     // endregion
+
+    public RegFormModel(FormParseResult result) throws ParseException {
+        Map<String,String> fields = result.getFields();
+        this.setName      ( fields.get( "reg-name"      ) );
+        this.setLogin     ( fields.get( "reg-login"     ) );
+        this.setPassword  ( fields.get( "reg-password"  ) );
+        this.setRepeat    ( fields.get( "reg-repeat"    ) );
+        this.setEmail     ( fields.get( "reg-email"     ) );
+        this.setIsAgree   ( fields.get( "reg-rules"     ) );
+        this.setBirthdate ( fields.get( "reg-birthdate" ) );
+        this.setAvatar    ( result );
+    }
+
+    public Map<String, String > getErrorMessages() {
+
+        Map<String, String> result = new HashMap<>() ;
+
+        if(login == null || "".equals(login)) {
+            result.put("login", "Login cannot be empty");
+        }
+
+        if(name == null || "".equals(name)) {
+            result.put("name", "The name cannot be empty");
+        }
+
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+
+        if(!pattern.matcher(email).matches()) {
+            result.put("email", "Invalid e-mail address");
+        }
+
+        Date current = new Date();
+
+        if(birthdate == null) {
+            result.put("birthdate", "You must enter your date of birth");
+        }
+        else if(birthdate.compareTo( current ) > 0 ) {
+            result.put("birthdate", "Greetings, racer! How is the track?");
+        }
+
+        if(password == null || "".equals(password)) {
+            result.put("password", "Password cannot be empty");
+        }
+        else if(password.length() < 3) {
+            result.put("password", "The password must be longer than three characters");
+        }
+
+        if(repeat == null || "".equals(repeat)) {
+            result.put("repeat", "You must repeat the password");
+        }
+        else if(!password.equals(repeat)) {
+            result.put("repeat", "Passwords do not match");
+        }
+
+        if(!isAgree) {
+            result.put("rules", "You have to agree not to break anything");
+        }
+
+        return result;
+    }
 
     private static final SimpleDateFormat formDate = new SimpleDateFormat("yyyy-MM-dd");
 }

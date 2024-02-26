@@ -8,10 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import javax.servlet.http.HttpSession;
-import java.util.UUID;
-
-
 @Singleton
 public class CharsetFilter implements Filter {
     private FilterConfig filterConfig;
@@ -34,19 +30,6 @@ public class CharsetFilter implements Filter {
         res.setCharacterEncoding(charsetName);
         // для передачі даних далі по ланці використовуємо атрибути
         req.setAttribute("charsetName", charsetName);
-
-
-
-                // імітація авторизації користувача: протягом однієї сесії WS буде зберігатись саме це "ім'я" користувача
-                HttpSession httpSession = req.getSession();
-                String user = (String) httpSession.getAttribute("user");
-                if(user == null) {
-                    user = UUID.randomUUID().toString().substring(0,4);
-                    httpSession.setAttribute("user", user);
-                }
-                req.setAttribute("user", user);
-
-
         // Передача роботи по ланцюгу
         filterChain.doFilter(servletRequest, servletResponse);
 

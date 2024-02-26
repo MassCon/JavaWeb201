@@ -1,9 +1,9 @@
 package step.learning.dto.entities;
 
-import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class User {
     private String id;
@@ -13,10 +13,9 @@ public class User {
     private String passDk;
     private String email;
     private String emailCode;
-
     private Date birthdate;
+    private Integer coins;
     private String avatarUrl;
-
     private Date registerAt;
     private Date deleteAt;
 
@@ -29,6 +28,7 @@ public class User {
         this.setSalt(resultSet.getString("salt"));
         this.setPassDk(resultSet.getString("pass_dk"));
         this.setBirthdate(resultSet.getDate("birthdate"));
+        this.setCoins(resultSet.getInt("coins"));
         this.setAvatarUrl(resultSet.getString("avatar_url"));
         this.setEmailCode(resultSet.getString("email_code"));
 
@@ -127,5 +127,13 @@ public class User {
 
     public void setEmailCode(String emailCode) {
         this.emailCode = emailCode;
+    }
+
+    public Integer getCoins() {
+        return coins;
+    }
+
+    public void setCoins(Integer coins) {
+        this.coins = coins;
     }
 }

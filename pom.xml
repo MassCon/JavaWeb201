@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>step.learning</groupId>
   <artifactId>JavaWeb201</artifactId>
@@ -8,7 +8,6 @@
   <name>JavaWeb201 Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
-
     <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -29,13 +28,6 @@
       <groupId>com.google.inject.extensions</groupId>
       <artifactId>guice-servlet</artifactId>
       <version>6.0.0</version>
-    </dependency>
-
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
@@ -68,6 +60,13 @@
       <scope>provided</scope>
     </dependency>
 
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <build>
     <finalName>JavaWeb201</finalName>
