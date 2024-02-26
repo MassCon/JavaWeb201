@@ -9,18 +9,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="929a80fd-ad8e-473e-96dd-a25ceb174443" name="Changes" comment="27.10.2023 Auth4 hw+clw">
-      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/dao/ChatDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/dto/entities/ChatMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/ioc/WebsocketModule.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/servlets/WsServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/ws/WebsocketConfigurator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/step/learning/ws/WebsocketServer.java" afterDir="false" />
+    <list default="true" id="929a80fd-ad8e-473e-96dd-a25ceb174443" name="Changes" comment="30.10.2023 WebSocket hw+clw">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/filters/CharsetFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/filters/CharsetFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/ioc/IocContextListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/ioc/IocContextListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/ioc/RouterModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/ioc/RouterModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/dao/AuthTokenDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/dao/AuthTokenDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/dao/ChatDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/dao/ChatDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/dto/entities/AuthToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/dto/entities/AuthToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/step/learning/ws/WebsocketServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/step/learning/ws/WebsocketServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/ws.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/ws.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,10 +27,10 @@
       <list>
         <option value="CSS File" />
         <option value="package.json" />
-        <option value="Jsp File" />
         <option value="JavaScript File" />
         <option value="HTML File" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -196,7 +191,7 @@
       <updated>1706912810364</updated>
       <workItem from="1706912811402" duration="3112000" />
       <workItem from="1707256084905" duration="5334000" />
-      <workItem from="1708791496103" duration="36185000" />
+      <workItem from="1708791496103" duration="38067000" />
     </task>
     <task id="LOCAL-00001" summary="06.11.2023">
       <option name="closed" value="true" />
@@ -286,7 +281,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708908883861</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="30.10.2023 WebSocket hw+clw">
+      <option name="closed" value="true" />
+      <created>1708910292965</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1708910292965</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -303,6 +306,7 @@
     <MESSAGE value="24.10.2023 Auth2 hw+clw" />
     <MESSAGE value="25.10.2023 Auth3 hw+clw" />
     <MESSAGE value="27.10.2023 Auth4 hw+clw" />
-    <option name="LAST_COMMIT_MESSAGE" value="27.10.2023 Auth4 hw+clw" />
+    <MESSAGE value="30.10.2023 WebSocket hw+clw" />
+    <option name="LAST_COMMIT_MESSAGE" value="30.10.2023 WebSocket hw+clw" />
   </component>
 </project>
