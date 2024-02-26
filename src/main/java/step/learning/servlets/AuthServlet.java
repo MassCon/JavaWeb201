@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import step.learning.dto.entities.AuthToken;
+import java.util.Base64;
 
 @Singleton
 public class AuthServlet extends HttpServlet {
@@ -52,7 +53,10 @@ public class AuthServlet extends HttpServlet {
             sendResponse(resp, 401, "Auth rejected for given login and/or password");
             return;
         }
-        resp.getWriter().print(gson.toJson(authToken));
+        String json = gson.toJson(authToken);
+        String base64code = Base64.getUrlEncoder().encodeToString(json.getBytes());
+        resp.setContentType("text/plain");
+        resp.getWriter().print(base64code);
     }
 
     private void sendResponse(HttpServletResponse resp, int status, Object body) throws IOException {
