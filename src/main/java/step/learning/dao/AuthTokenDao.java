@@ -15,6 +15,9 @@ import java.sql.*;
 import java.util.Date;
 import java.util.UUID;
 
+import com.google.gson.JsonParser;
+import java.util.Base64;
+
 
 @Singleton
 public class AuthTokenDao {
@@ -29,6 +32,32 @@ public class AuthTokenDao {
         this.logger = logger;
         this.userDao = userDao;
 
+    }
+
+    public AuthToken getTokenByBearer(String bearer) {
+        String jti;
+        try {
+            jti = JsonParser.parseString(
+                    new String(Base64.getUrlDecoder().decode(bearer.getBytes()))
+            ).getAsJsonObject().get("jti").getAsString();
+        }
+        catch (Exception ex) {
+            System.err.println("bearer parse error " + ex.getMessage() + " " + bearer);
+            return null;
+        }
+        String sql = "SELECT BIN_TO_UUID(t.jti) AS jti, t.sub, t.iat, t.exp FROM " + dbPrefix + "auth_tokens t " +
+                "WHERE jti = UUID_TO_BIN(?) AND t.exp > CURRENT_TIMESTAMP";
+        try(PreparedStatement prep = dbProvider.getConnection().prepareStatement(sql)) {
+            prep.setString(1, jti);
+            ResultSet resultSet = prep.executeQuery();
+            if(resultSet.next()) {
+                return new AuthToken(resultSet);
+            }
+        }
+        catch (SQLException ex) {
+            logger.log(Level.WARNING, ex.getMessage() + " --- " + sql);
+        }
+        return null;
     }
 
     public AuthToken getTokenByCredentials(String login, String password) {
